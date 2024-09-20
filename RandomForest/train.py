@@ -1,3 +1,7 @@
+# Autor: Jonathan Hernández
+# Fecha: 19 Septiembre 2024
+# Descripción: RandomForest Train.
+# GitHub: https://github.com/Jona163
 
 from random import random
 from sklearn import datasets
