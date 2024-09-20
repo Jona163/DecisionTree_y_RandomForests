@@ -50,7 +50,6 @@ class DecisionTree:
         return Node(best_feature, best_thresh, left, right)
 
 
-
     def _best_split(self, X, y, feat_idxs):
         best_gain = -1
         split_idx, split_threshold = None, None
@@ -69,7 +68,6 @@ class DecisionTree:
                     split_threshold = thr
 
         return split_idx, split_threshold
-
 
 
     def _information_gain(self, y, X_column, threshold):
@@ -97,5 +95,27 @@ class DecisionTree:
         right_idxs = np.argwhere(X_column > split_thresh).flatten()
         return left_idxs, right_idxs
 
+    def _entropy(self, y):
+        hist = np.bincount(y)
+        ps = hist / len(y)
+        return -np.sum([p * np.log(p) for p in ps if p>0])
+
+
+    def _most_common_label(self, y):
+        counter = Counter(y)
+        value = counter.most_common(1)[0][0]
+        return value
+
+    def predict(self, X):
+        return np.array([self._traverse_tree(x, self.root) for x in X])
+
+    def _traverse_tree(self, x, node):
+        if node.is_leaf_node():
+            return node.value
+
+        if x[node.feature] <= node.threshold:
+            return self._traverse_tree(x, node.left)
         return self._traverse_tree(x, node.right)
+        
+
 
