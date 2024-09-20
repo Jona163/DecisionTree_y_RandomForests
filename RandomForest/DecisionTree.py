@@ -1,3 +1,8 @@
+# Autor: Jonathan Hernández
+# Fecha: 19 Septiembre 2024
+# Descripción: DecisionTree Clase.
+# GitHub: https://github.com/Jona163
+
 import numpy as np
 from collections import Counter
 
