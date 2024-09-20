@@ -96,3 +96,6 @@ class DecisionTree:
         left_idxs = np.argwhere(X_column <= split_thresh).flatten()
         right_idxs = np.argwhere(X_column > split_thresh).flatten()
         return left_idxs, right_idxs
+
+        return self._traverse_tree(x, node.right)
+
