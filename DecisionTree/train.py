@@ -1,3 +1,7 @@
+# Autor: Jonathan Hernández
+# Fecha: 19 Septiembre 2024
+# Descripción: DecisionTree Train.
+# GitHub: https://github.com/Jona163
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 import numpy as np
