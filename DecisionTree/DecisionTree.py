@@ -48,3 +48,24 @@ class DecisionTree:
         left = self._grow_tree(X[left_idxs, :], y[left_idxs], depth+1)
         right = self._grow_tree(X[right_idxs, :], y[right_idxs], depth+1)
         return Node(best_feature, best_thresh, left, right)
+
+
+
+    def _best_split(self, X, y, feat_idxs):
+        best_gain = -1
+        split_idx, split_threshold = None, None
+
+        for feat_idx in feat_idxs:
+            X_column = X[:, feat_idx]
+            thresholds = np.unique(X_column)
+
+            for thr in thresholds:
+                # calculate the information gain
+                gain = self._information_gain(y, X_column, thr)
+
+                if gain > best_gain:
+                    best_gain = gain
+                    split_idx = feat_idx
+                    split_threshold = thr
+
+        return split_idx, split_threshold
